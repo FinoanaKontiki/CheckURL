@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-# from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 from pyvirtualdisplay import Display
 
 class checkUrl():
@@ -34,7 +34,7 @@ class checkUrl():
         #     }
         # chrome_options.add_experimental_option("prefs",prefs)
         # chrome_options.page_load_strategy = 'normal'
-        # webdriver.Chrome(ChromeDriverManager().install())
+        webdriver.Chrome(ChromeDriverManager().install())
         screen  = Display(visible=0, size=(1920,1081)).start()
         driver = webdriver.Chrome(executable_path="//usr//local//bin//chromedriver",chrome_options=chrome_options)
         return driver
