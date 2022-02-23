@@ -17,7 +17,7 @@ class checkUrl():
         self.driver = self.driverInit()
         self.wait = ui.WebDriverWait(self.driver, timeout=10000)
         self.url_checked = {}
-        self.last_inFile = 2808
+        self.last_inFile = 3289
 
     
     def driverInit(self):
@@ -61,6 +61,7 @@ class checkUrl():
         status = "error"
         html = base64.b64decode(code)
         soup = BeautifulSoup(html, "html.parser")
+        rand_link = ""
         if soup.find("a") != None:
             # print(soup.find_all("a"))
             # print("----------4552245")
@@ -82,7 +83,7 @@ class checkUrl():
                         try:
                             if type(ex) == KeyError:
                                 self.decode(code, file_data, indice)
-                        except RecursionError :
+                        except Exception as ex :
                             rand_link = ""
                 else:
                     rand_link = sub_link.find("a")["href"]
@@ -117,6 +118,6 @@ class checkUrl():
         self.url_checked[rand_link]=status
         newdata.to_csv('files/result.csv', sep=';', mode='a', index =False, header=False)
     
-file_path = "files/exports2.xlsx"
+file_path = "files//exports2.xlsx"
 check = checkUrl()
 check.filesData(file_path) 
