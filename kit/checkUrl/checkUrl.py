@@ -34,7 +34,7 @@ class checkUrl():
         #     }
         # chrome_options.add_experimental_option("prefs",prefs)
         # chrome_options.page_load_strategy = 'normal'
-        # webdriver.Chrome(ChromeDriverManager().install())
+        webdriver.Chrome(ChromeDriverManager().install())
         screen  = Display(visible=0, size=(1920,1081)).start()
         driver = webdriver.Chrome(executable_path="//usr//local//bin//chromedriver",chrome_options=chrome_options)
         return driver
