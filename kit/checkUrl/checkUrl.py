@@ -4,11 +4,11 @@ import pandas as pd
 import requests
 import json
 import random
+import selenium.webdriver.support.ui as ui
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-import selenium.webdriver.support.ui as ui
 from webdriver_manager.chrome import ChromeDriverManager
 from pyvirtualdisplay import Display
 
