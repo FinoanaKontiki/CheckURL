@@ -9,30 +9,34 @@ from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 import selenium.webdriver.support.ui as ui
+from webdriver_manager.chrome import ChromeDriverManager
+from pyvirtualdisplay import Display
 
 class checkUrl():
     def __init__(self):
         self.driver = self.driverInit()
         self.wait = ui.WebDriverWait(self.driver, timeout=10000)
         self.url_checked = {}
-        self.last_inFile = 2700
+        self.last_inFile = 2808
 
     
     def driverInit(self):
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("--start-maximized")
         chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--disable-dev-shm-usage")
-        chrome_options.add_argument("--no-sandbox")
-        prefs = {
-            "download.default_directory" : "D:\\Perso",
-            "download.prompt_for_download": False,
-            "download.directory_upgrade": True,
-            "plugins.always_open_pdf_externally": True
-            }
-        chrome_options.add_experimental_option("prefs",prefs)
-        chrome_options.page_load_strategy = 'normal'
-        driver = webdriver.Chrome(executable_path="C:\\PROJECT\\Driver\\chromedriver.exe",chrome_options=chrome_options)
+        # chrome_options.add_argument("--disable-dev-shm-usage")
+        # chrome_options.add_argument("--no-sandbox")
+        # prefs = {
+        #     "download.default_directory" : "D:\\Perso",
+        #     "download.prompt_for_download": False,
+        #     "download.directory_upgrade": True,
+        #     "plugins.always_open_pdf_externally": True
+        #     }
+        # chrome_options.add_experimental_option("prefs",prefs)
+        # chrome_options.page_load_strategy = 'normal'
+        # webdriver.Chrome(ChromeDriverManager().install())
+        screen  = Display(visible=0, size=(1920,1081)).start()
+        driver = webdriver.Chrome(executable_path="//usr//local//bin//chromedriver",chrome_options=chrome_options)
         return driver
         
     def filesData (self,osFiles):
