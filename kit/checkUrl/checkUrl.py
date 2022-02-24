@@ -17,7 +17,7 @@ class checkUrl():
         self.driver = self.driverInit()
         self.wait = ui.WebDriverWait(self.driver, timeout=10000)
         self.url_checked = {}
-        self.last_inFile = 3289
+        self.last_inFile = 14886
 
     
     def driverInit(self):
@@ -59,35 +59,39 @@ class checkUrl():
         
     def decode(self,code, file_data, indice):
         status = "error"
-        html = base64.b64decode(code)
-        soup = BeautifulSoup(html, "html.parser")
-        rand_link = ""
-        if soup.find("a") != None:
-            # print(soup.find_all("a"))
-            # print("----------4552245")
-            sub_link =soup.find("a")
-            try:
-                rand_link = sub_link["href"]
-            except Exception as e:
-                print(e,"-------------################# ERROR #############")
-                print(type(e))
-                if type(e) == KeyError:
-                    all_link = soup.find_all("a")
-                    sub_link = random.choice(all_link)
-                    print(sub_link)
-                    try:
-                        print(0)
-                        rand_link = sub_link["href"]
-                    except Exception as ex:
-                        print(ex,"-------------################# ERROR 2 #############")
+        try:
+            html = base64.b64decode(code)
+            soup = BeautifulSoup(html, "html.parser")
+            rand_link = ""
+            if soup.find("a") != None:
+                # print(soup.find_all("a"))
+                # print("----------4552245")
+                sub_link =soup.find("a")
+                try:
+                    rand_link = sub_link["href"]
+                except Exception as e:
+                    print(e,"-------------################# ERROR #############")
+                    print(type(e))
+                    if type(e) == KeyError:
+                        all_link = soup.find_all("a")
+                        sub_link = random.choice(all_link)
+                        print(sub_link)
                         try:
-                            if type(ex) == KeyError:
-                                self.decode(code, file_data, indice)
-                        except Exception as ex :
-                            rand_link = ""
-                else:
-                    rand_link = sub_link.find("a")["href"]
-        elif soup.find("a") == None:
+                            print(0)
+                            rand_link = sub_link["href"]
+                        except Exception as ex:
+                            print(ex,"-------------################# ERROR 2 #############")
+                            try:
+                                if type(ex) == KeyError:
+                                    self.decode(code, file_data, indice)
+                            except Exception as ex :
+                                rand_link = ""
+                    else:
+                        rand_link = sub_link.find("a")["href"]
+            elif soup.find("a") == None:
+                rand_link = ""
+        except Exception as exInit:
+            status = str(exInit)
             rand_link = ""
         print('LINK --------------')
         print(rand_link)
